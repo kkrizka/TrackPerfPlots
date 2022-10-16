@@ -1,0 +1,9 @@
+inputs:
+  -
+    title: Single Muons
+    path: muonGun_sim_MuColl_v1_0.root
+    linecolor: kBlue
+  -
+    title: Single Pions
+    path: pionGun_sim_MuColl_v1_0.root
+    linecolor: kRed
