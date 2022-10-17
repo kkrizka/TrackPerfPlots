@@ -1,0 +1,14 @@
+title: Single Pions
+inputs:
+  -
+    title: Truth
+    path: pionGun_rec_truth_MuColl_v1.root
+    linecolor: kBlack
+  -
+    title: Conformal
+    path: pionGun_rec_conformal_MuColl_v1.root
+    linecolor: kBlue
+  -
+    title: ACTS
+    path: pionGun_rec_MuColl_v1.root
+    linecolor: kRed
