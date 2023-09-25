@@ -1,9 +1,8 @@
+name: muonGun
 inputs:
-  -
-    title: Single Muons
-    path: muonGun_sim_MuColl_v1_0.root
+  - title: w/o BIB overlay
+    path: muonGun_rec_MuColl_v1.root
     linecolor: kBlue
-  -
-    title: Single Pions
-    path: pionGun_sim_MuColl_v1_0.root
+  - title: "#sqrt{s} = 1.5 TeV overlay"
+    path: muonGun_rec_MuColl_v1_BIB.root
     linecolor: kRed

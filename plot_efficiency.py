@@ -10,6 +10,8 @@ from kkconfig import runconfig
 
 from kkroot import style
 
+import mccstyle
+
 import sys
 from math import *
 
@@ -33,8 +35,13 @@ for v in runcfg['variables']:
 
     mg_eff=ROOT.TMultiGraph()
 
-    l = ROOT.TLegend(0.6,0.2+len(runcfg['inputs'])*0.05,0.9,0.2)
+    legend=v.get('legend',{})
+    lx=legend.get('x',0.4)
+    ly=legend.get('y',0.3)
+
+    l = ROOT.TLegend(lx,ly+len(runcfg['inputs'])*0.05,lx+0.4,ly)
     l.SetBorderSize(0)
+    l.SetFillStyle(0)
 
     for i in runcfg['inputs']:
         # Open file with data
@@ -43,8 +50,21 @@ for v in runcfg['variables']:
 
         # Create efficiency object
         ROOT.gROOT.cd()
-        den=fh.Get('MyTrackPerf/all/'+v['name'])
-        num=fh.Get('MyTrackPerf/real/'+v['name'])
+        dname='MyTrackPerf/all/'+v['name']
+        den=fh.Get(dname)
+        if den==None:
+            print(f"{dname} missing in {i['path']}")
+            continue
+
+        nname='MyTrackPerf/real/'+v['name']
+        num=fh.Get(nname)
+        if num==None:
+            print(f"{nname} missing in {i['path']}")
+            continue
+
+        num.Rebin(2)
+        den.Rebin(2)
+
         eff=ROOT.TEfficiency(num, den)
         effs.append(eff)
 
@@ -62,9 +82,15 @@ for v in runcfg['variables']:
     mg_eff.Draw('AP')
     l.Draw()
 
+    mg_eff.SetTitle(runcfg.get('title',''))
+
     mg_eff.SetMinimum(0)
-    mg_eff.SetMaximum(1)
-    mg_eff.GetYaxis().SetTitle('Efficiency')
+    mg_eff.SetMaximum(1.05)
+    mg_eff.GetYaxis().SetTitle('Track reconstruction efficiency')
+    mg_eff.GetXaxis().SetTitle(den.GetXaxis().GetTitle())
+    mg_eff.GetXaxis().SetLimits(den.GetXaxis().GetXmin(),den.GetXaxis().GetXmax())
+
+    mccstyle.logo(xpos=0.4,ypos=0.46)
 
     c.Draw()
-    c.SaveAs(v['name']+'.'+config.format)
+    c.SaveAs('efficiency_'+runcfg['name']+'_'+v['name']+'.'+config.format)

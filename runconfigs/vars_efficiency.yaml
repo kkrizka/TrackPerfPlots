@@ -1,2 +1,5 @@
 variables:
   - name: truth_pt
+  - name: truth_theta
+  - name: truth_vtr
+  - name: truth_vtz

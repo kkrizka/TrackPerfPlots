@@ -1,17 +1,13 @@
 inputs:
-  -
-    title: Single Muons
+  - title: Single Muons
     path: muonGun_rec_MuColl_v1.root
     linecolor: kBlack
-  -
-    title: Single Pions
+  - title: Single Pions
     path: pionGun_rec_MuColl_v1.root
     linecolor: kRed
-  -
-    title: Single Electrons
+  - title: Single Electrons
     path: elGun_rec_MuColl_v1.root
     linecolor: kBlue
-  -
-    title: H#rightarrowb#bar{b}
+  - title: H#rightarrowb#bar{b}
     path: pionGun_rec_MuColl_v1.root
     linecolor: kMagenta
