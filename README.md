@@ -57,5 +57,5 @@ Each variable is a dictionary with the following keys:
 For example, to compare the different particle guns:
 
 ```shell
-plot_efficiencies.py 
+plot_efficiencies.py runconfigs/data_muonGun.yaml  runconfigs/vars_efficiency.yaml
 ```
